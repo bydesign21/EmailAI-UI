@@ -1,0 +1,28 @@
+<div class="p-4 bg-white rounded-lg shadow-md">
+  <h3 class="text-lg leading-6 font-medium text-gray-900">
+    High Priority Emails
+  </h3>
+  <div *ngIf="!isLoading; else loadingTemplate">
+    <p class="mt-1 text-sm text-gray-600 italic">
+      Emails needing immediate attention.
+    </p>
+    <p
+      class="mt-2 text-3xl min-h-[8rem] font-semibold flex flex-auto justify-center items-center align-middle text-red-600"
+    >
+      {{ count }}
+    </p>
+  </div>
+  <ng-template #loadingTemplate>
+    <div class="flex justify-center align-middle items-center min-h-[8rem]">
+      <nz-spin
+        class="relative flex flex-auto justify-center items-center bottom-[1rem]"
+        [nzSpinning]="true"
+        [nzIndicator]="indicatorTemplate"
+      ></nz-spin>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #indicatorTemplate>
+  <span class="text-6xl" nz-icon nzType="loading"></span>
+</ng-template>

@@ -1,0 +1,15 @@
+<div
+  class="overflow-scroll md:overflow-hidden sm:p-4 mx-auto text-base font-sans leading-relaxed prose text-left"
+>
+  <div *ngIf="data?.summary?.length > 1" class="max-h-[10rem] mb-4">
+    <nz-collapse>
+      <nz-collapse-panel [nzHeader]="'GPT Summary'">
+        {{ data.summary }}
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div>
+  <div
+    class="flex flex-col mx-auto overflow-scroll md:overflow-hidden text-left"
+    [innerHTML]="safeHtmlContent"
+  ></div>
+</div>

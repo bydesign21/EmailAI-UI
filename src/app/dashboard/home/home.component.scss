@@ -1,0 +1,42 @@
+.sentiment-progress {
+  ::ng-deep span.ant-progress-text {
+    position: relative;
+    bottom: 5.25rem;
+    left: 2.75rem;
+  }
+}
+
+::ng-deep {
+  .ant-tooltip.EmailModalTitleTemplate
+    > .ant-tooltip-content
+    > .ant-tooltip-inner {
+    width: fit-content;
+    width: -moz-fit-content;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  .email-modal {
+    .ant-modal-close-x {
+      position: fixed;
+      right: 3dvw;
+    }
+    .ant-modal-header {
+      width: 95%;
+      position: fixed;
+      .ant-modal-title {
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        div {
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+    .ant-modal-body {
+      padding-top: 3rem;
+    }
+  }
+}

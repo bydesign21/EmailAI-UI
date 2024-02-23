@@ -1,0 +1,24 @@
+::ng-deep {
+  .ant-tooltip.EmailTableTooltip > .ant-tooltip-content > .ant-tooltip-inner {
+    width: fit-content;
+    width: -moz-fit-content;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(40, 49, 53, 0.75);
+  }
+  .ant-table-tbody > tr.ant-table-row:hover > td,
+  .ant-table-tbody > tr > td.ant-table-cell-row-hover {
+    background-color: unset !important;
+    color: unset !important;
+  }
+
+  nz-table-sorters.ant-table-column-sorters {
+    display: flex;
+
+    span.ant-table-column-sorter {
+      margin-left: 1rem;
+      position: relative;
+      bottom: 0.25rem;
+    }
+  }
+}

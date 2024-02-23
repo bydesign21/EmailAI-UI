@@ -1,0 +1,31 @@
+<!-- Dashboard Container -->
+<div class="min-h-screen bg-gray-100">
+  <!-- Header -->
+  <div class="bg-white shadow">
+    <div
+      class="flex flex-row justify-between mx-auto py-6 px-4 sm:px-6 lg:px-8"
+    >
+      <h1 class="text-3xl max-w-[25rem] font-bold text-gray-900 strong italic">
+        <img
+          class="max-w-[10rem] min-h-[5rem]"
+          src="assets/logo.svg"
+          alt="EmailGPT"
+        />
+      </h1>
+      <div
+        (click)="handleLogout()"
+        class="flex flex-row justify-center items-center hover:opacity-50 cursor-pointer"
+      >
+        <span class="[&>*]:text-black mr-2 relative top-[0.15rem]">Logout</span>
+        <span
+          class="[&>*]:text-red-500 text-2xl relative"
+          nz-icon
+          [nzType]="'poweroff'"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <router-outlet></router-outlet>
+</div>

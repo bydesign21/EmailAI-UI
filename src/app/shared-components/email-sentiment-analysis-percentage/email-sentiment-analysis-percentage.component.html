@@ -1,0 +1,31 @@
+<div class="p-4 bg-white rounded-lg shadow-md">
+  <h3 class="text-lg leading-6 font-medium text-gray-900">
+    Sentiment Analysis
+  </h3>
+  <div *ngIf="!isLoading; else loadingTemplate">
+    <p class="mt-1 text-sm text-gray-600 italic">
+      Overview of email sentiments.
+    </p>
+    <nz-progress
+      class="mt-2 flex flex-auto items-center justify-center relative l-[2rem] sentiment-progress"
+      nzType="circle"
+      [nzPercent]="percentage"
+      [nzSuccessPercent]="percentage"
+      nzStatus="active"
+    ></nz-progress>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="flex justify-center align-middle items-center min-h-[8rem]">
+    <nz-spin
+      class="relative flex flex-auto justify-center items-center bottom-[1rem]"
+      [nzSpinning]="true"
+      [nzIndicator]="indicatorTemplate"
+    ></nz-spin>
+  </div>
+</ng-template>
+
+<ng-template #indicatorTemplate>
+  <span class="text-6xl" nz-icon nzType="loading"></span>
+</ng-template>

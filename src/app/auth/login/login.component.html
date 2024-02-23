@@ -1,0 +1,76 @@
+<div class="flex items-center justify-center min-h-[35vh] bg-gray-100">
+  <div
+    *ngIf="!isLoading"
+    class="grid grid-cols-1 flex flex-row mx-4 gap-4 max-w-md w-full m-4"
+    [ngClass]="{
+      'md:grid-cols-1': isOptionSelected,
+      'md:grid-cols-2': !isOptionSelected
+    }"
+  >
+    <!-- Google Sign-In Card -->
+    <div
+      *ngIf="!isHideGoogle"
+      [@expandCollapse]="
+        isOptionSelected ? (isHideMicrosoft ? 'expanded' : 'collapsed') : null
+      "
+      class="flex flex-col items-center justify-center p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+    >
+      <span
+        nz-icon
+        nzType="google"
+        nzTheme="outline"
+        alt="Google"
+        class="mb-4 text-red-500 [&>*]:w-[4rem] [&>*]:h-[4rem]"
+      ></span>
+      <button
+        (click)="signInWithGoogle()"
+        class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-all duration-300"
+      >
+        <div *ngIf="isOptionSelected; else googleTemplate">
+          Signing in with Google...
+        </div>
+        <ng-template #googleTemplate
+          ><div>Sign in with Google</div></ng-template
+        >
+      </button>
+    </div>
+
+    <!-- Microsoft Sign-In Card -->
+    <div
+      *ngIf="!isHideMicrosoft"
+      [@expandCollapse]="
+        isOptionSelected ? (isHideGoogle ? 'expanded' : 'collapsed') : null
+      "
+      class="flex flex-col items-center justify-center p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+    >
+      <span
+        nz-icon
+        nzType="windows"
+        nzTheme="outline"
+        alt="Microsoft"
+        class="mb-4 text-blue-500 [&>*]:w-[4rem] [&>*]:h-[4rem]"
+      ></span>
+      <button
+        (click)="signInWithMicrosoft()"
+        class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition-all duration-300"
+      >
+        <div *ngIf="isOptionSelected; else microsoftTemplate">
+          Signing in with Microsoft...
+        </div>
+        <ng-template #microsoftTemplate
+          ><div>Sign in with Microsoft</div></ng-template
+        >
+      </button>
+    </div>
+  </div>
+  <div class="flex items-center flex-auto justify-center" *ngIf="isLoading">
+    <ng-template #indicatorTemplate
+      ><span class="text-6xl" nz-icon nzType="loading"></span
+    ></ng-template>
+    <nz-spin
+      class="flex flex-auto justify-center items-center relative bottom-[2.5rem]"
+      [nzSpinning]="true"
+      [nzIndicator]="indicatorTemplate"
+    ></nz-spin>
+  </div>
+</div>

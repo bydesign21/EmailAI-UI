@@ -1,0 +1,75 @@
+<main>
+  <div
+    class="gap-4 sm:grid sm:grid-cols-3 mx-4 sm:mx-auto py-6 sm:px-6 flex flex-col lg:px-8"
+  >
+    <app-email-count
+      [isLoading]="false"
+      class="[&>*]:h-[14.5rem]"
+      [count]="(emailsAnalyzedCount | async) || 0"
+    />
+    <app-high-priority-email-count
+      [isLoading]="false"
+      class="[&>*]:h-[14.5rem]"
+      [count]="(highPriorityEmailCount | async) || 0"
+    />
+    <app-email-sentiment-analysis-percentage
+      [isLoading]="false"
+      class="[&>*]:h-[14.5rem]"
+      [percentage]="(sentimentAnalysisPercentage | async) || 0"
+    />
+  </div>
+  <div class="flex flex-col text-center justify-center items-center">
+    <div class="min-w-[90dvw] mb-8">
+      <h2 class="text-2xl flex text-left flex-auto mx-auto">Emails</h2>
+      <app-email-table
+        (analyzeEmail)="handleAnalyzeEmail($event)"
+        (rowClicked)="handleRowClicked($event)"
+        [emails]="(emailData | async) || []"
+        [isLoading]="!!(isDataLoading | async)"
+      />
+      <button
+        type="button"
+        class="mt-5 bg-white rounded-lg"
+        [nzType]="'default'"
+        [nzSize]="'large'"
+        nz-button
+        [disabled]="!!(isDataLoading | async) || !nextPageToken"
+        (click)="handleLoadMore()"
+      >
+        Load More
+      </button>
+    </div>
+  </div>
+</main>
+
+<ng-template #EmailModalTitleTemplate>
+  <div>
+    <span
+      class="max-w-[75dvw] truncate text-ellipsis inline-block"
+      [nz-tooltip]="tooltipTemplate"
+      [nzTooltipOverlayClassName]="'EmailModalTitleTemplate'"
+      [nzTooltipTrigger]="
+        shouldShowTooltip(selectedEmail.subject + ' ' + selectedEmail.from)
+          ? 'hover'
+          : null
+      "
+      >{{ selectedEmail.subject
+      }}<strong> {{ selectedEmail.from }}</strong></span
+    >
+  </div>
+</ng-template>
+
+<ng-template #tooltipTemplate>
+  <div>
+    <div class="flex flex-col">
+      <div class="flex flex-row">
+        <span class="font-bold">Subject: </span>
+        <span class="ml-1">{{ selectedEmail.subject }}</span>
+      </div>
+      <div class="flex flex-row">
+        <span class="font-bold">From: </span>
+        <span class="ml-1">{{ selectedEmail.from }}</span>
+      </div>
+    </div>
+  </div>
+</ng-template>
